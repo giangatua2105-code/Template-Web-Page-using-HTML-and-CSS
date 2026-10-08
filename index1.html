@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creative Web Design</title>
+
+    <style>
+      /* ================= RESET ================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        padding-top: 60px; /* tránh navbar che header */
+      }
+
+      /* ================= HEADER ================= */
+      .header {
+        background: url("https://picsum.photos/id/1015/1600/800") center/cover;
+        color: white;
+        text-align: center;
+        padding: 100px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Lớp blur phía sau */
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: calc(100% + 20px);
+        height: calc(100% + 20px);
+        background: inherit;
+        filter: blur(8px);
+        z-index: 0;
+      }
+
+      /* Lớp phủ đen mờ */
+      .header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+
+      .header p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #1abc9c;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background: #16a085;
+        transform: translateY(-2px);
+      }
+
+      /* ================= NAVBAR ================= */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #333;
+        padding: 15px 0;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .navbar ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+      }
+
+      .navbar ul li {
+        margin: 0 15px;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        transition: 0.3s;
+        border-bottom: 2px solid transparent;
+      }
+
+      .navbar ul li a:hover {
+        color: #f39c12;
+        border-bottom: 2px solid #f39c12;
+      }
+
+      /* ================= CONTENT SECTION ================= */
+      .content {
+        text-align: center;
+        padding: 60px 20px;
+        background: #f9f9f9;
+      }
+
+      .content h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #2c3e50;
+      }
+
+      /* ================= CARD LAYOUT (CSS GRID) ================= */
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .card {
+        background: white;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+
+      .card h3 {
+        color: #1abc9c;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        color: #555;
+        line-height: 1.6;
+        text-align: left;
+      }
+
+      /* ================= FOOTER ================= */
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 25px 40px;
+        background: #2c3e50;
+        color: white;
+      }
+
+      .footer-left,
+      .footer-right {
+        line-height: 1.8;
+      }
+
+      .footer-right {
+        text-align: right;
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 992px) {
+        .card-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .card-container {
+          grid-template-columns: 1fr;
+        }
+
+        .navbar ul {
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .navbar ul li {
+          margin: 5px 0;
+        }
+
+        body {
+          padding-top: 130px;
+        }
+
+        .header h1 {
+          font-size: 1.8rem;
+        }
+
+        .footer {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-right {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+      <div class="header-content">
+        <h1>Creative Web Design</h1>
+        <p>Thiết kế website chuyên nghiệp - Hiện đại - Ấn tượng</p>
+        <a href="#services" class="btn">Khám phá ngay</a>
+      </div>
+    </header>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">Trang chủ</a></li>
+        <li><a href="#services">Dịch vụ</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Liên hệ</a></li>
+      </ul>
+    </nav>
+
+    <!-- ================= CONTENT SECTION ================= -->
+    <section class="content" id="services">
+      <h2>Dịch vụ của chúng tôi</h2>
+      <div class="card-container">
+        <div class="card">
+          <img src="https://picsum.photos/id/180/400/300" alt="Dịch vụ 1" />
+          <h3>Thiết kế Website</h3>
+          <p>
+            • Chúng tôi tạo ra những trang web chuyên nghiệp, thân thiện với
+            người dùng.
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="https://picsum.photos/id/20/400/300" alt="Dịch vụ 2" />
+          <h3>SEO &amp; Marketing</h3>
+          <p>• Giúp website của bạn đạt thứ hạng cao trên công cụ tìm kiếm.</p>
+        </div>
+
+        <div class="card">
+          <img src="https://picsum.photos/id/24/400/300" alt="Dịch vụ 3" />
+          <h3>Hỗ trợ 24/7</h3>
+          <p>• Đội ngũ hỗ trợ luôn sẵn sàng giúp bạn giải quyết mọi vấn đề.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+      <div class="footer-left">
+        <p>• &copy; 2025 Creative Web. All rights reserved.</p>
+      </div>
+      <div class="footer-right">
+        <p>• Theo dõi chúng tôi:</p>
+        <p>• Facebook | Twitter | LinkedIn</p>
+      </div>
+    </footer>
+  </body>
+</html>
